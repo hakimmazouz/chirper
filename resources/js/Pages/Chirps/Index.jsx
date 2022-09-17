@@ -6,6 +6,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Head, useForm } from "@inertiajs/inertia-react";
 
 export default function Index({ auth, chirps = [] }) {
+    console.log(chirps);
     const { data, setData, post, processing, reset, errors } = useForm({
         message: "",
     });

@@ -17,7 +17,11 @@ class ChirpController extends Controller
     public function index()
     {
         return Inertia::render('Chirps/Index', [
-            "chirps" => Chirp::with('user:id,name')->latest()->get()
+            "chirps" => 
+                Chirp::with(['user:id,name', 'likes'])
+                ->withCount('likes')
+                ->latest()
+                ->get()
         ]);
     }
 
@@ -88,7 +92,6 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp)
     {
-        $this->authorize('delete', $chirp);
 
         $chirp->delete();
 
